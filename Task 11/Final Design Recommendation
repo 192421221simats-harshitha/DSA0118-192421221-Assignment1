@@ -1,0 +1,49 @@
+Aim: Recommend the best design for the City Metro Smart-Card System and justify your decision using the previous task results.
+1. Recommended design
+I recommend an Object-Oriented Programming (OOP) design using C++.
+- Data types: Use long long to store fare and balance in paise. This avoids floating-point rounding issues and supports large network collections.
+- Constants: Use constexpr for base fares, peak surcharge and minimum balance. This avoids changing important values accidentally.
+- Classes: Use a SmartCard class to store balance and control journey deductions. Keep the balance private and use public functions to access it.
+- Control structures: Use if-else for peak-hour and minimum-balance checking, and switch for zone selection.
+2. How will fare revision be done?
+When the metro changes its fare, update the fare constants in the program and recompile the application.
+
+For example, if the Inner Zone fare changes, update its value in the fare table.
+3. Limitations
+- Fare changes require recompilation and redeployment.
+- The current design needs additional code for new zones or concession rules.
+- It does not directly read updated fares from an external file.
+4. Will the design work for the whole network?
+Yes. The design can handle large numbers of journeys because it uses long long for total collections and integer paise for accurate calculations. The fare calculation for each journey takes O(1) time.
+5. Alternative design – Configuration file
+Instead of changing the program whenever fares change, we can store fares in a configuration file such as fares.txt.
+
+Example:
+1000
+2000
+3000
+
+
+The program reads these values when the metro gate starts.
+
+Advantages:
+- Fare changes can be made by editing the file.
+- No need to recompile the program for every fare revision.
+- The same program can be used across different stations.
+Complexity:
+- Reading z zone fares takes O(z) time.
+- Storing the fares requires O(z) space.
+- With compile-time constants, no file-reading startup time is needed.
+6. Final conclusion
+The OOP design with integer paise, long long, and constexpr is suitable for the metro system. A configuration file can make future fare updates easier. The final design should be validated using the test results from Tasks 9 and 10.
+
+Important: Add your actual program outputs and measurements from your experiments as evidence. Don't write that you measured something unless you really ran it.
+GitHub files for Task11
+Save the analysis as Task11_Analysis.md. Include:
+- Recommended design
+- Reasons for selecting data types and constants
+- Fare revision method
+- Limitations
+- Configuration-file alternative
+- Complexity comparison
+- Evidence from your previous task results
